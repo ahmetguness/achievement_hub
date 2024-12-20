@@ -4,6 +4,6 @@ interface User {
 }
 
 export const user1: User = {
-  userName: "123",
-  password: "123",
+  userName: "test",
+  password: "test",
 };

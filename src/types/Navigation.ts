@@ -2,9 +2,11 @@ import { NavigationProp } from "@react-navigation/native";
 
 export type RootStackParamList = {
   IntroScreen: undefined;
-  HomeScreen: undefined;
   SelectionScreen: undefined;
   LoginScreen: undefined;
+  ParentHomeScreen: undefined;
+  ChildHomeScreen: undefined;
+  GuestHomeScreen: undefined;
 };
 
 export type IntroScreenNavigationProp = NavigationProp<
@@ -12,17 +14,24 @@ export type IntroScreenNavigationProp = NavigationProp<
   "IntroScreen"
 >;
 
-export type HomeScreenNavigationProp = NavigationProp<
-  RootStackParamList,
-  "HomeScreen"
->;
-
 export type SelectionScreenNavigationProp = NavigationProp<
   RootStackParamList,
   "SelectionScreen"
 >;
 
-export type SLoginScreenNavigationProp = NavigationProp<
+export type LoginScreenNavigationProp = NavigationProp<
   RootStackParamList,
   "LoginScreen"
+>;
+export type ParentHomeScreenNavigationProp = NavigationProp<
+  RootStackParamList,
+  "ParentHomeScreen"
+>;
+export type ChildHomeScreenNavigationProp = NavigationProp<
+  RootStackParamList,
+  "ChildHomeScreen"
+>;
+export type GuestHomeScreenNavigationProp = NavigationProp<
+  RootStackParamList,
+  "GuestHomeScreen"
 >;
