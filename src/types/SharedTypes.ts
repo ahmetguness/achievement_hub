@@ -1,1 +1,1 @@
-export type UserType = "parent" | "child";
+export type UserType = "guest" | "parent" | "child";

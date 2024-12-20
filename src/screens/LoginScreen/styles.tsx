@@ -5,12 +5,17 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   bottomContainer: {
+    width: "100%",
     height: "70%",
     backgroundColor: "white",
     position: "absolute",
     bottom: 0,
     borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "space-around",
+    paddingVertical: "30%",
   },
+  innerBottomContainer: {},
   upperContainer: {
     marginTop: "25%",
     marginLeft: "15%",
