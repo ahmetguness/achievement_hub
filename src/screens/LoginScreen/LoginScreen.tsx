@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, ScrollView } from "react-native";
-import { useSelector } from "react-redux";
+import { View, Text, TextInput, ScrollView, Button } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../hooks/redux_toolkit/store";
 import { LinearGradient } from "expo-linear-gradient";
 import { GRADIENTCOLORS } from "../../theme/Colors";
@@ -10,6 +10,7 @@ import TextButton from "../../components/buttons/TextButton";
 import { user1 } from "../../data/dummy_data";
 import { useNavigation } from "@react-navigation/native";
 import { LoginScreenNavigationProp } from "../../types/Navigation";
+import { updateUserType } from "../../hooks/redux_toolkit/slices/UserSlice";
 
 interface InputAreaProps {
   title: string;
@@ -39,6 +40,8 @@ const LoginScreen: React.FC = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation<LoginScreenNavigationProp>();
+  const [signUp, setSignUp] = useState(false);
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     setUserName("");
@@ -48,14 +51,17 @@ const LoginScreen: React.FC = () => {
       const nav =
         userSlice.userType === "parent"
           ? "ParentHomeScreen"
-          : userSlice.userType === "child"
-          ? "ChildHomeScreen"
-          : "GuestHomeScreen";
+          : "ChildHomeScreen";
 
       navigation.navigate(nav);
     } else {
       console.log("no access");
     }
+  };
+
+  const handleGuestLogin = () => {
+    dispatch(updateUserType("guest"));
+    navigation.navigate("GuestHomeScreen");
   };
 
   return (
@@ -76,28 +82,33 @@ const LoginScreen: React.FC = () => {
           </Text>
         </View>
         <View style={styles.bottomContainer}>
-          <InputArea
-            title="User Name"
-            onChangeText={setUserName}
-            value={userName}
-          />
-          <InputArea
-            title="Password"
-            onChangeText={setPassword}
-            value={password}
-          />
-
-          <PrimaryButton btnName="Log In" onPress={handleLogin} />
-          <View style={styles.actionButtonsContainer}>
-            <TextButton
-              btnName="Sign Up"
-              onPress={() => console.log("Sign Up Clicked")}
-            />
-            <TextButton
-              btnName="Sign In as GUEST"
-              onPress={() => console.log("Guest Login Clicked")}
-            />
-          </View>
+          {signUp ? (
+            <>
+              <Text>SIGN UP SCREEN HERE</Text>
+              <Button title="change" onPress={() => setSignUp(false)} />
+            </>
+          ) : (
+            <>
+              <InputArea
+                title="User Name"
+                onChangeText={setUserName}
+                value={userName}
+              />
+              <InputArea
+                title="Password"
+                onChangeText={setPassword}
+                value={password}
+              />
+              <PrimaryButton btnName="Log In" onPress={handleLogin} />
+              <View style={styles.actionButtonsContainer}>
+                <TextButton btnName="Sign Up" onPress={() => setSignUp(true)} />
+                <TextButton
+                  btnName="Sign In as GUEST"
+                  onPress={() => handleGuestLogin()}
+                />
+              </View>
+            </>
+          )}
         </View>
       </ScrollView>
     </LinearGradient>

@@ -1,25 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-type UserType = "parent" | "teacher" | "student";
+interface AppState {}
 
-interface AppState {
-  userType: UserType;
-}
-
-const initialState: Readonly<AppState> = {
-  userType: "parent",
-};
+const initialState: AppState = {};
 
 const appSlice = createSlice({
   name: "app",
   initialState,
-  reducers: {
-    updateUserType: (state, action: PayloadAction<UserType>) => {
-      state.userType = action.payload;
-    },
-  },
+  reducers: {},
 });
-
-export const { updateUserType } = appSlice.actions;
-
-export default appSlice.reducer;

@@ -7,6 +7,7 @@ import LoginScreen from "../screens/LoginScreen/LoginScreen";
 import ParentHomeScreen from "../screens/HomeScreen/ParentHomeScreen/ParentHomeScreen";
 import ChildHomeScreen from "../screens/HomeScreen/ChildHomeScreen/ChildHomeScreen";
 import GuestHomeScreen from "../screens/HomeScreen/GuestHomeScreen/GuestHomeScreen";
+import BottomTabNav from "./BottomTabNav";
 
 const StackNav = () => {
   const Stack = createStackNavigator<RootStackParamList>();
@@ -20,7 +21,7 @@ const StackNav = () => {
       <Stack.Screen name="IntroScreen" component={IntroScreen} />
       <Stack.Screen name="SelectionScreen" component={SelectionScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="ParentHomeScreen" component={ParentHomeScreen} />
+      <Stack.Screen name="ParentHomeScreen" component={BottomTabNav} />
       <Stack.Screen name="ChildHomeScreen" component={ChildHomeScreen} />
       <Stack.Screen name="GuestHomeScreen" component={GuestHomeScreen} />
     </Stack.Navigator>
